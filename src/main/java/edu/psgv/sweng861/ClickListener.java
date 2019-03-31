@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.*;
-
+import java.sql.Connection;
 
 public class ClickListener implements ActionListener {
 	
@@ -17,9 +17,12 @@ public class ClickListener implements ActionListener {
 	private double deadliftMax;
 	private double benchMax;
 	private double squatMax;
-	private ArrayList<Double> oHPressSet1;
-	private WeightCalculator calculator;
 	private JTextField overHeadPressField;
+	private JTextField deadliftField;
+	private JTextField benchField;
+	private JTextField squatField;
+	
+	
 	private JFrame frame;
 	
 	private static final String USERNAME = "dbuser";
@@ -27,14 +30,13 @@ public class ClickListener implements ActionListener {
 	private static final String CONN = "jdbc:mysql://localhost/weightlifting531";
 	
 
-	public ClickListener(JTextField oHPressField, double deadliftMax, double benchMax, double squatMax, JFrame frame) {
+	public ClickListener(JTextField oHPressField, JTextField deadliftField, JTextField benchField, 
+			JTextField squatField, JFrame frame) {
 		super();
 		this.overHeadPressField = oHPressField;
-		this.deadliftMax = deadliftMax;
-		this.benchMax = benchMax;
-		this.squatMax = squatMax;
-		this.oHPressSet1 = new ArrayList<Double>();
-		this.calculator = new WeightCalculator();
+		this.deadliftField = deadliftField;
+		this.benchField = benchField;
+		this.squatField = squatField;
 		this.frame = frame;
 	}
 	
@@ -47,38 +49,40 @@ public class ClickListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		this.oHPressMax = Double.parseDouble(overHeadPressField.getText());
-		this.oHPressSet1 = this.calculator.calcWeekOne(this.oHPressMax);
+		this.deadliftMax = Double.parseDouble(deadliftField.getText());
+		this.benchMax = Double.parseDouble(benchField.getText());
+		this.squatMax = Double.parseDouble(squatField.getText());
 		
 		this.frame.getContentPane().removeAll();
 		frame.repaint();
 		
 		createComponents(this.frame.getContentPane());
 		
-		this.overHeadPressField.setText(oHPressSet1.get(1).toString());
+		//this.overHeadPressField.setText(oHPressSet1.get(1).toString());
 		
 		//trying to connect to Database here
 		
-		Connection con = null;
-		
-		try {
-			
-			con = DriverManager.getConnection(CONN, USERNAME, PASSWORD);
-			System.out.println("Connected to database! :)");
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			System.out.println("Database connection failed");
-			e1.printStackTrace();
-		}
-		finally {
-			if(con != null) {
-				try {
-					con.close();
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		}
+//		Connection con = null;
+//		
+//		try {
+//			
+//			con = DriverManager.getConnection(CONN, USERNAME, PASSWORD);
+//			System.out.println("Connected to database! :)");
+//		} catch (SQLException e1) {
+//			// TODO Auto-generated catch block
+//			System.out.println("Database connection failed");
+//			e1.printStackTrace();
+//		}
+//		finally {
+//			if(con != null) {
+//				try {
+//					con.close();
+//				} catch (SQLException e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				}
+//			}
+//		}
 		
 	}
 	
@@ -88,7 +92,7 @@ public class ClickListener implements ActionListener {
 		BoxLayout layout = new BoxLayout(container, BoxLayout.Y_AXIS);
 		container.setLayout(layout);
 		
-		 SwingTableExample newContentPane = new SwingTableExample();
+		 SwingTableExample newContentPane = new SwingTableExample(this.oHPressMax, this.deadliftMax, this.benchMax, this.squatMax);
 	     newContentPane.setOpaque(true); //content panes must be opaque
 	     frame.setContentPane(newContentPane);
 	 

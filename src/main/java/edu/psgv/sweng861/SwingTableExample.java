@@ -7,16 +7,27 @@ import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 
 
 public class SwingTableExample extends JPanel {
     private boolean DEBUG = false;
+   
+    private double oHPressMax;
+    private double deadliftMax;
+	private double benchMax;
+	private double squatMax;
  
-    public SwingTableExample() {
+    public SwingTableExample(double oHPressMax, double deadliftMax, double benchMax, double squatMax) {
         super(new GridLayout(1,0));
  
-        JTable table = new JTable(new MyTableModel());
-        table.setPreferredScrollableViewportSize(new Dimension(500, 70));
+        this.oHPressMax = oHPressMax;
+        this.deadliftMax = deadliftMax;
+        this.benchMax = benchMax;
+        this.squatMax = squatMax;
+        
+        JTable table = new JTable(new MyTableModel(this.oHPressMax, this.deadliftMax, this.benchMax, this.squatMax));
+        table.setPreferredScrollableViewportSize(new Dimension(1500, 70));
         table.setFillsViewportHeight(true);
  
         //Create the scroll pane and add the table to it.

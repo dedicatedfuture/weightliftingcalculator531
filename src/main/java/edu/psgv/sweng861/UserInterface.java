@@ -61,8 +61,8 @@ public class UserInterface implements Runnable {
 //		this.benchMax = Double.parseDouble(benchField.getText());
 //		this.squatMax = Double.parseDouble(squatField.getText());  
 		
-		calculate.addActionListener(new ClickListener(overHeadPressField, this.deadliftMax, 
-				this.benchMax, this.squatMax, this.frame));
+		calculate.addActionListener(new ClickListener(overHeadPressField, deadliftField, 
+				benchField, squatField, this.frame));
 		
 	}
 	
