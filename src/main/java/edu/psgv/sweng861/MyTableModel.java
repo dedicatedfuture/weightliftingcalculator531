@@ -1,7 +1,15 @@
 package edu.psgv.sweng861;
 
 import javax.swing.table.AbstractTableModel;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.TimeZone;
 
 public class MyTableModel extends AbstractTableModel {
 	 private ArrayList<Double> oHPressSet1;
@@ -80,6 +88,19 @@ public class MyTableModel extends AbstractTableModel {
 			fillInTable(21, squatSet3);
 			fillInTable(22, squatSet4);
 			
+			try {
+				updateDatabase();
+			} catch (InstantiationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 	
 	String[] columnNames = {"Exercise", 
@@ -113,6 +134,56 @@ public class MyTableModel extends AbstractTableModel {
 			{"Week 4(3x5)", 55, 70, 85}, 
 	};
 	
+	
+	//establishing connection to database now, may need to move database communication to 
+	//another class later
+	public void updateDatabase() throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+
+		Connection connection = null;
+		String databaseName = "weightlifting531";
+		String url = "jdbc:mysql://localhost:3306/" + databaseName+"?serverTimezone=" + TimeZone.getDefault().getID();
+		String username = "root";
+		String password = "password";
+		
+		Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+		
+		try {
+			connection = DriverManager.getConnection(url, username, password);
+			Statement stmt = connection.createStatement();
+		
+			PreparedStatement ps = connection.prepareStatement("INSERT INTO user (name, password) VALUES ('bill', 'password');");																
+			int status = ps.executeUpdate();
+			
+		
+			
+			 String strSelect = "SELECT * FROM user;";
+	         System.out.println("The SQL statement is: " + strSelect + "\n");  // Echo for debugging
+	         ResultSet rset = stmt.executeQuery(strSelect);
+	         while(rset.next()) {   // Move the cursor to the next row
+	            System.out.println(rset.getInt("userID") + ", "
+	                    + rset.getString("name") + ", "
+	                    + rset.getString("password")
+	                    );
+	         }
+			
+			
+			if(status != 0) {
+				System.out.println("Database was connected");
+				System.out.println("record was inserted");
+				
+			}
+			
+			if(connection !=null) {
+				System.out.println("connected successfully!!!!!");
+			}
+		}catch(SQLException e) {
+			System.out.println("database not connecting");
+			System.out.println("SQLException: " + e.getMessage());
+		    System.out.println("SQLState: " + e.getSQLState());
+		    System.out.println("VendorError: " + e.getErrorCode());
+		}
+		
+	}
 	
 	
 	
