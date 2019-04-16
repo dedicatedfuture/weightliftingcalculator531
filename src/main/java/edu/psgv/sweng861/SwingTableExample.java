@@ -1,12 +1,17 @@
 package edu.psgv.sweng861;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.SwingUtilities;
 import javax.swing.table.AbstractTableModel;
+
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
 
@@ -29,11 +34,30 @@ public class SwingTableExample extends JPanel {
         JTable table = new JTable(new MyTableModel(this.oHPressMax, this.deadliftMax, this.benchMax, this.squatMax));
         table.setPreferredScrollableViewportSize(new Dimension(1500, 70));
         table.setFillsViewportHeight(true);
+        
+        JPanel buttonspot = new JPanel();
+        buttonspot.setLayout(new BorderLayout());
+        JButton backButton = new JButton("Back");
+        
+        
+        
+        backButton.addActionListener(new ClickListener(){
+        		public void actionPerformed(ActionEvent arg) {
+        			SwingUtilities.invokeLater(new UserInterface());
+        		}
+        });
+        
+        //changed layout from boxlayout to border layout to get the effect i wanted
+        buttonspot.add(backButton, BorderLayout.SOUTH);
  
+       
+        
         //Create the scroll pane and add the table to it.
         JScrollPane scrollPane = new JScrollPane(table);
  
         //Add the scroll pane to this panel.
-        add(scrollPane);
+        //add(scrollPane);
+        buttonspot.add(scrollPane, BorderLayout.CENTER);
+        add(buttonspot);
     }
 }
