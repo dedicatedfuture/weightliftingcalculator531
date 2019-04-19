@@ -17,10 +17,7 @@ public class StrengthListener implements ActionListener {
 	private Double userWeight;
 	private JTextField userWeightField;
 	private JRadioButton sexButton;
-	
-	JFrame frame;
-	
-	
+	private JFrame frame;
 
 	public StrengthListener(JRadioButton sex, JTextField userWeight, JFrame frame) {
 		super();
@@ -28,9 +25,6 @@ public class StrengthListener implements ActionListener {
 		this.userWeightField = userWeight;
 		this.frame = frame;
 	}
-
-
-
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -47,7 +41,6 @@ public class StrengthListener implements ActionListener {
 		frame.repaint();
 		
 		createComponents(this.frame.getContentPane());
-
 	}
 	
 	private void createComponents(Container container) {
@@ -64,7 +57,4 @@ public class StrengthListener implements ActionListener {
 	     frame.pack();
 	     frame.setVisible(true);
 	}
-	
-	
-
 }

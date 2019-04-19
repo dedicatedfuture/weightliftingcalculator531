@@ -40,16 +40,13 @@ public class SwingTableExample extends JPanel {
         JPanel buttonspot = new JPanel();
         buttonspot.setLayout(new BorderLayout());
         JButton backButton = new JButton("Back");
-        
-        
-        
+
+        //adding action listener to make back button work
         backButton.addActionListener(new BackListener(this.frame));
         
         //changed layout from boxlayout to border layout to get the effect i wanted
         buttonspot.add(backButton, BorderLayout.SOUTH);
  
-       
-        
         //Create the scroll pane and add the table to it.
         JScrollPane scrollPane = new JScrollPane(table);
  

@@ -75,12 +75,10 @@ public ArrayList<Integer> scrapeExercise(String url) {
 			doc = Jsoup.connect("https://strengthlevel.com/strength-standards/" + url).get();
 			//System.out.print(doc);
 			
-			
 			int weight = 0;
 			weight = (int)(Math.rint((double) this.userWeight/10)* 10);
 
 			//need to ask for male or female to use correct chart
-			//this grabs male chart currently
 			Elements content = doc.getElementsByClass("standards__table");
 			//System.out.println("");
 			//System.out.println(content.get(0));
@@ -125,9 +123,6 @@ public ArrayList<Integer> scrapeExercise(String url) {
 		for(int number : this.chartMaxs) {
 			tempHolder.add(number);
 		}
-		
-		
-		
 		return tempHolder;
 	}
 	
@@ -163,5 +158,4 @@ public ArrayList<Integer> scrapeExercise(String url) {
 		data[row][col] = value;
 		fireTableCellUpdated(row, col);
 	}
-
 }

@@ -22,11 +22,7 @@ public class ClickListener implements ActionListener {
 	private JTextField deadliftField;
 	private JTextField benchField;
 	private JTextField squatField;
-	
-	
 	private JFrame frame;
-	
-	
 
 	public ClickListener(JTextField oHPressField, JTextField deadliftField, JTextField benchField, 
 			JTextField squatField, JFrame frame) {
@@ -50,11 +46,7 @@ public class ClickListener implements ActionListener {
 		frame.repaint();
 		
 		createComponents(this.frame.getContentPane());
-		
-	
 	}
-	
-	
 
 	private void createComponents(Container container) {
 		BoxLayout layout = new BoxLayout(container, BoxLayout.Y_AXIS);
@@ -67,9 +59,6 @@ public class ClickListener implements ActionListener {
 	     //Display the window.
 	     frame.pack();
 	     frame.setVisible(true);
-
 	}
-	
-
 }
  

@@ -10,21 +10,15 @@ public class BackListener implements ActionListener {
 	
 	JFrame frame;
 	
-	
-
 	public BackListener(JFrame frame) {
 		super();
 		this.frame = frame;
 	}
-
-
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		this.frame.dispose();
 		SwingUtilities.invokeLater(new UserInterface());
-
 	}
-
 }

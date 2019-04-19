@@ -15,11 +15,9 @@ public class UserInterface implements Runnable {
 		this.frame = frame2;
 	}
 
-
 	public UserInterface() {
 		// TODO Auto-generated constructor stub
 	}
-
 
 	@Override
 	public void run() {
@@ -109,10 +107,8 @@ public class UserInterface implements Runnable {
 		strengthStandardButton.addActionListener(new StrengthListener(maleButton, userWeightField, this.frame)); 
 		
 		calculate.addActionListener(new ClickListener(overHeadPressField, deadliftField, 
-				benchField, squatField, this.frame));
-		
-	}
-	
+				benchField, squatField, this.frame));	
+	}	
 }
 
 

@@ -12,25 +12,25 @@ import java.util.ArrayList;
 import java.util.TimeZone;
 
 public class MyTableModel extends AbstractTableModel {
-	 private ArrayList<Double> oHPressSet1;
-	 private ArrayList<Double> oHPressSet2;
-	 private ArrayList<Double> oHPressSet3;
-	 private ArrayList<Double> oHPressSet4;
+	 private ArrayList<Integer> oHPressSet1;
+	 private ArrayList<Integer> oHPressSet2;
+	 private ArrayList<Integer> oHPressSet3;
+	 private ArrayList<Integer> oHPressSet4;
 	 
-	 private ArrayList<Double> deadliftSet1;
-	 private ArrayList<Double> deadliftSet2;
-	 private ArrayList<Double> deadliftSet3;
-	 private ArrayList<Double> deadliftSet4;
+	 private ArrayList<Integer> deadliftSet1;
+	 private ArrayList<Integer> deadliftSet2;
+	 private ArrayList<Integer> deadliftSet3;
+	 private ArrayList<Integer> deadliftSet4;
 	 
-	 private ArrayList<Double> benchSet1;
-	 private ArrayList<Double> benchSet2;
-	 private ArrayList<Double> benchSet3;
-	 private ArrayList<Double> benchSet4;
+	 private ArrayList<Integer> benchSet1;
+	 private ArrayList<Integer> benchSet2;
+	 private ArrayList<Integer> benchSet3;
+	 private ArrayList<Integer> benchSet4;
 	 
-	 private ArrayList<Double> squatSet1;
-	 private ArrayList<Double> squatSet2;
-	 private ArrayList<Double> squatSet3;
-	 private ArrayList<Double> squatSet4;
+	 private ArrayList<Integer> squatSet1;
+	 private ArrayList<Integer> squatSet2;
+	 private ArrayList<Integer> squatSet3;
+	 private ArrayList<Integer> squatSet4;
 	 
 	 
 	 private double oHPressMax;
@@ -154,46 +154,94 @@ public class MyTableModel extends AbstractTableModel {
 			//PreparedStatement ps = connection.prepareStatement("INSERT INTO user (name, password) VALUES ('bill', 'password');");																
 //			PreparedStatement ps = connection.prepareStatement("INSERT INTO exercise (name, monthID, userID) "
 //					+ "VALUES ('Overhead Press', '1', '1');");
-//			
-//			String overHeadPressWeek1SQL = String.format("INSERT INTO week(weight1, weight2, weight3, exerciseID, monthID, userID) "
-//					+ "VALUES(%3d, %3d, %3d, %1d, %1d);",oHPressSet1.get(0), oHPressSet1.get(1), oHPressSet1.get(3), 1, 1);
-//			
-//			String overHeadPressWeek2SQL = String.format("INSERT INTO week(weight1, weight2, weight3, exerciseID, monthID, userID) "
-//					+ "VALUES(%3d, %3d, %3d, %1d, %1d);",oHPressSet2.get(0), oHPressSet2.get(1), oHPressSet2.get(3), 1, 1);
-//			
-//			String overHeadPressWeek3SQL = String.format("INSERT INTO week(weight1, weight2, weight3, exerciseID, monthID, userID) "
-//					+ "VALUES(%3d, %3d, %3d, %1d, %1d);",oHPressSet3.get(0), oHPressSet3.get(1), oHPressSet3.get(3), 1, 1);
-//			
-//			String overHeadPressWeek4SQL = String.format("INSERT INTO week(weight1, weight2, weight3, exerciseID, monthID, userID) "
-//					+ "VALUES(%3d, %3d, %3d, %1d, %1d);",oHPressSet4.get(0), oHPressSet4.get(1), oHPressSet4.get(3), 1, 1);
-//			
-//			
-//			PreparedStatement psOverhead1= connection.prepareStatement(overHeadPressWeek1SQL);
-//			PreparedStatement psOverhead2= connection.prepareStatement(overHeadPressWeek2SQL);
-//			PreparedStatement psOverhead3= connection.prepareStatement(overHeadPressWeek3SQL);
-//			PreparedStatement psOverhead4= connection.prepareStatement(overHeadPressWeek4SQL);
-//			
-//			psOverhead1.executeUpdate();
-//			psOverhead2.executeUpdate();
-//			psOverhead3.executeUpdate();
-//			psOverhead4.executeUpdate();
+
+			//OverHead Press Database Update
+			String overHeadPressSQL = String.format("INSERT INTO totalmonth(exercise, week1set1, week1set2, week1set3, "
+					+ "week2set1, week2set2, week2set3, week3set1, week3set2, week3set3,"
+					+ "week4set1, week4set2, week4set3) VALUES('Overhead Press', %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d);", 
+				oHPressSet1.get(0), oHPressSet1.get(1), oHPressSet1.get(2), 
+					oHPressSet2.get(0), oHPressSet2.get(1), oHPressSet2.get(2), 
+					oHPressSet3.get(0), oHPressSet3.get(1), oHPressSet3.get(2), 
+					oHPressSet4.get(0), oHPressSet4.get(1), oHPressSet4.get(2));
+		
+			PreparedStatement psOverhead= connection.prepareStatement(overHeadPressSQL);
+			psOverhead.executeUpdate();
+			
+			//Deadlift Database Update
+			String deadliftSQL = String.format("INSERT INTO totalmonth(exercise, week1set1, week1set2, week1set3, "
+					+ "week2set1, week2set2, week2set3, week3set1, week3set2, week3set3,"
+					+ "week4set1, week4set2, week4set3) VALUES('Deadlift', %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d);", 
+				deadliftSet1.get(0), deadliftSet1.get(1), deadliftSet1.get(2), 
+				deadliftSet2.get(0), deadliftSet2.get(1), deadliftSet2.get(2), 
+				deadliftSet3.get(0), deadliftSet3.get(1), deadliftSet3.get(2), 
+				deadliftSet4.get(0), deadliftSet4.get(1), deadliftSet4.get(2));
+
+			PreparedStatement psDeadlift= connection.prepareStatement(deadliftSQL);
+			psDeadlift.executeUpdate();
+			
+			//Bench Database Update
+			String benchSQL = String.format("INSERT INTO totalmonth(exercise, week1set1, week1set2, week1set3, "
+					+ "week2set1, week2set2, week2set3, week3set1, week3set2, week3set3,"
+					+ "week4set1, week4set2, week4set3) VALUES('Deadlift', %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d);", 
+				benchSet1.get(0), benchSet1.get(1), benchSet1.get(2), 
+				benchSet2.get(0), benchSet2.get(1), benchSet2.get(2), 
+				benchSet3.get(0), benchSet3.get(1), benchSet3.get(2), 
+				benchSet4.get(0), benchSet4.get(1), benchSet4.get(2));
+
+			PreparedStatement psBench= connection.prepareStatement(benchSQL);
+			psBench.executeUpdate();
+			
+			//Squat Database Update
+			String squatSQL = String.format("INSERT INTO totalmonth(exercise, week1set1, week1set2, week1set3, "
+					+ "week2set1, week2set2, week2set3, week3set1, week3set2, week3set3,"
+					+ "week4set1, week4set2, week4set3) VALUES('Deadlift', %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d);", 
+				squatSet1.get(0), squatSet1.get(1), squatSet1.get(2), 
+				squatSet2.get(0), squatSet2.get(1), squatSet2.get(2), 
+				squatSet3.get(0), squatSet3.get(1), squatSet3.get(2), 
+				squatSet4.get(0), squatSet4.get(1), squatSet4.get(2));
+
+			PreparedStatement psSquat= connection.prepareStatement(squatSQL);
+			psSquat.executeUpdate();
+			
+
+
 			
 			//int status = ps.executeUpdate();
 			
 			//add to database
 			
-			
-		
-			
-			 String strSelect = "SELECT * FROM user;";
+			 String strSelect = "SELECT * FROM totalmonth;";
 	         System.out.println("The SQL statement is: " + strSelect + "\n");  // Echo for debugging
 	         ResultSet rset = stmt.executeQuery(strSelect);
 	         while(rset.next()) {   // Move the cursor to the next row
-	            System.out.println(rset.getInt("userID") + ", "
-	                    + rset.getString("name") + ", "
-	                    + rset.getString("password")
+	            System.out.println(rset.getInt("idtotalmonth") + ", "
+	                    + rset.getString("exercise") + ", "
+	                    + rset.getString("week1set1") + ", "
+	                    + rset.getString("week1set2") + ", "
+	                    + rset.getString("week1set3") + ", "
+	                    + rset.getString("week2set1") + ", "
+	    	            + rset.getString("week2set2") + ", "
+	    	            + rset.getString("week2set3") + ", "
+	    	            + rset.getString("week3set1") + ", "
+	    	            + rset.getString("week3set2") + ", "
+	    	            + rset.getString("week3set3") + ", "
+	    	            + rset.getString("week4set1") + ", "
+	    	            + rset.getString("week4set2") + ", "
+	    	            + rset.getString("week4set3")
 	                    );
 	         }
+			
+		
+			
+//			 String strSelect = "SELECT * FROM user;";
+//	         System.out.println("The SQL statement is: " + strSelect + "\n");  // Echo for debugging
+//	         ResultSet rset = stmt.executeQuery(strSelect);
+//	         while(rset.next()) {   // Move the cursor to the next row
+//	            System.out.println(rset.getInt("userID") + ", "
+//	                    + rset.getString("name") + ", "
+//	                    + rset.getString("password")
+//	                    );
+//	         }
 			
 			
 //			if(status != 0) {
@@ -219,16 +267,9 @@ public class MyTableModel extends AbstractTableModel {
 				}
 			}
 		}
-		
 	}
 	
-	public void writeDatabase(ArrayList<Double> setList, String exerciseName) {
-		
-		
-	}
-	
-	public void fillInTable(int row, ArrayList<Double> setList) {
-		
+	public void fillInTable(int row, ArrayList<Integer> setList) {		
 		for(int i = 1; i<= setList.size(); i++) {
 			setValueAt(setList.get(i - 1), row, i);
 		}
@@ -261,5 +302,4 @@ public class MyTableModel extends AbstractTableModel {
 		data[row][col] = value;
 		fireTableCellUpdated(row, col);
 	}
-
 }

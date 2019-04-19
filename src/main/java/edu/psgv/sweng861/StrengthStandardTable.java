@@ -13,13 +13,11 @@ import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 
 public class StrengthStandardTable  extends JPanel{
-    private boolean DEBUG = false;
-    
+    private boolean DEBUG = false;    
     private boolean sex;
     private double userWeight;
     private JFrame frame; 
 
- 
     public StrengthStandardTable(boolean sex, double userWeight, JFrame frame) {
         super(new GridLayout(1,0));
         
@@ -35,26 +33,18 @@ public class StrengthStandardTable  extends JPanel{
         //Create the scroll pane and add the table to it.
         JScrollPane scrollPane = new JScrollPane(table);
         
-        
         JPanel buttonspot = new JPanel();
         buttonspot.setLayout(new BorderLayout());
         JButton backButton = new JButton("Back");
-        
-        
-        
+
+        //actionlistener to make the back button work
         backButton.addActionListener(new BackListener(this.frame));
-        
-        
-        
+
+        //adding everything to buttonspot layout to change layout of GUI
         buttonspot.add(backButton, BorderLayout.SOUTH);
- 
-       
- 
+
         //Add the scroll pane to this panel.
-        //add(scrollPane);
         buttonspot.add(scrollPane, BorderLayout.CENTER);
-        add(buttonspot);
-        
-    
+        add(buttonspot);        
     }
 }

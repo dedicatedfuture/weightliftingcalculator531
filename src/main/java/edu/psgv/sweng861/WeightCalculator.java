@@ -11,10 +11,11 @@ public class WeightCalculator {
 	
 	public WeightCalculator(double oHPressMax, double deadliftMax, double benchMax, double squatMax) {
 		super();
-		this.oHPressMax = oHPressMax;
-		this.deadliftMax = deadliftMax;
-		this.benchMax = benchMax;
-		this.squatMax = squatMax;
+		//all calculations are based off 90% of users entered 1 rep max
+		this.oHPressMax = oHPressMax * .9;
+		this.deadliftMax = deadliftMax * .9;
+		this.benchMax = benchMax * .9;
+		this.squatMax = squatMax * .9;
 	}
 	
 	public WeightCalculator() {};
@@ -44,59 +45,54 @@ public class WeightCalculator {
 		this.squatMax = squatMax;
 	}
 	
-	public ArrayList<Double> calcWeekOne(double input) {
-		ArrayList<Double> setWeights = new ArrayList<>();
+	public ArrayList<Integer> calcWeekOne(double input) {
+		ArrayList<Integer> setWeights = new ArrayList<>();
 		
-		double set1 = input * .65;
-		double set2 = input * .75;
-		double set3 = input * .85;
+		int set1 = (int)Math.round(input * .65);
+		int set2 = (int)Math.round(input * .75);
+		int set3 = (int)Math.round(input * .85);
 		setWeights.add(set1);
 		setWeights.add(set2);
 		setWeights.add(set3);
-		
 		
 		return setWeights;
 	}
 	
-	public ArrayList<Double> calcWeekTwo(double input){
-		ArrayList<Double> setWeights = new ArrayList<>();
+	public ArrayList<Integer> calcWeekTwo(double input){
+		ArrayList<Integer> setWeights = new ArrayList<>();
 		
-		double set1 = input * .7;
-		double set2 = input * .8;
-		double set3 = input * .9;
+		int set1 = (int)Math.round(input * .7);
+		int set2 = (int)Math.round(input * .8);
+		int set3 = (int)Math.round(input * .9);
 		setWeights.add(set1);
 		setWeights.add(set2);
 		setWeights.add(set3);
-		
 		
 		return setWeights;
 	}
 	
-	public ArrayList<Double> calcWeekThree(double input){
-		ArrayList<Double> setWeights = new ArrayList<>();
+	public ArrayList<Integer> calcWeekThree(double input){
+		ArrayList<Integer> setWeights = new ArrayList<>();
 		
-		double set1 = input * .78;
-		double set2 = input * .85;
-		double set3 = input * .95;
+		int set1 = (int)Math.round(input * .78);
+		int set2 = (int)Math.round(input * .85);
+		int set3 = (int)Math.round(input * .95);
 		setWeights.add(set1);
 		setWeights.add(set2);
 		setWeights.add(set3);
 		
-		
 		return setWeights;
 	}
-	public ArrayList<Double> calcWeekFour(double input){
-		ArrayList<Double> setWeights = new ArrayList<>();
+	public ArrayList<Integer> calcWeekFour(double input){
+		ArrayList<Integer> setWeights = new ArrayList<>();
 		
-		double set1 = input * .4;
-		double set2 = input * .5;
-		double set3 = input * .6;
+		int set1 = (int)Math.round(input * .4);
+		int set2 = (int)Math.round(input * .5);
+		int set3 = (int)Math.round(input * .6);
 		setWeights.add(set1);
 		setWeights.add(set2);
 		setWeights.add(set3);
 		
-		
 		return setWeights;
 	}
-	
 }
