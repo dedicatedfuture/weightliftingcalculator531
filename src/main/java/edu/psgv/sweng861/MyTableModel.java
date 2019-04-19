@@ -151,8 +151,37 @@ public class MyTableModel extends AbstractTableModel {
 			connection = DriverManager.getConnection(url, username, password);
 			Statement stmt = connection.createStatement();
 		
-			PreparedStatement ps = connection.prepareStatement("INSERT INTO user (name, password) VALUES ('bill', 'password');");																
-			int status = ps.executeUpdate();
+			//PreparedStatement ps = connection.prepareStatement("INSERT INTO user (name, password) VALUES ('bill', 'password');");																
+//			PreparedStatement ps = connection.prepareStatement("INSERT INTO exercise (name, monthID, userID) "
+//					+ "VALUES ('Overhead Press', '1', '1');");
+//			
+//			String overHeadPressWeek1SQL = String.format("INSERT INTO week(weight1, weight2, weight3, exerciseID, monthID, userID) "
+//					+ "VALUES(%3d, %3d, %3d, %1d, %1d);",oHPressSet1.get(0), oHPressSet1.get(1), oHPressSet1.get(3), 1, 1);
+//			
+//			String overHeadPressWeek2SQL = String.format("INSERT INTO week(weight1, weight2, weight3, exerciseID, monthID, userID) "
+//					+ "VALUES(%3d, %3d, %3d, %1d, %1d);",oHPressSet2.get(0), oHPressSet2.get(1), oHPressSet2.get(3), 1, 1);
+//			
+//			String overHeadPressWeek3SQL = String.format("INSERT INTO week(weight1, weight2, weight3, exerciseID, monthID, userID) "
+//					+ "VALUES(%3d, %3d, %3d, %1d, %1d);",oHPressSet3.get(0), oHPressSet3.get(1), oHPressSet3.get(3), 1, 1);
+//			
+//			String overHeadPressWeek4SQL = String.format("INSERT INTO week(weight1, weight2, weight3, exerciseID, monthID, userID) "
+//					+ "VALUES(%3d, %3d, %3d, %1d, %1d);",oHPressSet4.get(0), oHPressSet4.get(1), oHPressSet4.get(3), 1, 1);
+//			
+//			
+//			PreparedStatement psOverhead1= connection.prepareStatement(overHeadPressWeek1SQL);
+//			PreparedStatement psOverhead2= connection.prepareStatement(overHeadPressWeek2SQL);
+//			PreparedStatement psOverhead3= connection.prepareStatement(overHeadPressWeek3SQL);
+//			PreparedStatement psOverhead4= connection.prepareStatement(overHeadPressWeek4SQL);
+//			
+//			psOverhead1.executeUpdate();
+//			psOverhead2.executeUpdate();
+//			psOverhead3.executeUpdate();
+//			psOverhead4.executeUpdate();
+			
+			//int status = ps.executeUpdate();
+			
+			//add to database
+			
 			
 		
 			
@@ -167,11 +196,11 @@ public class MyTableModel extends AbstractTableModel {
 	         }
 			
 			
-			if(status != 0) {
-				System.out.println("Database was connected");
-				System.out.println("record was inserted");
-				
-			}
+//			if(status != 0) {
+//				System.out.println("Database was connected");
+//				System.out.println("record was inserted");
+//				
+//			}
 			
 			if(connection !=null) {
 				System.out.println("connected successfully!!!!!");
@@ -181,11 +210,22 @@ public class MyTableModel extends AbstractTableModel {
 			System.out.println("SQLException: " + e.getMessage());
 		    System.out.println("SQLState: " + e.getSQLState());
 		    System.out.println("VendorError: " + e.getErrorCode());
+		}finally {
+			if(connection !=null) {
+				try {
+				connection.close();
+				}catch(SQLException e) {
+					System.out.println(e);
+				}
+			}
 		}
 		
 	}
 	
-	
+	public void writeDatabase(ArrayList<Double> setList, String exerciseName) {
+		
+		
+	}
 	
 	public void fillInTable(int row, ArrayList<Double> setList) {
 		

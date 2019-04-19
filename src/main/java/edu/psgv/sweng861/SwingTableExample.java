@@ -22,14 +22,16 @@ public class SwingTableExample extends JPanel {
     private double deadliftMax;
 	private double benchMax;
 	private double squatMax;
+	private JFrame frame;
  
-    public SwingTableExample(double oHPressMax, double deadliftMax, double benchMax, double squatMax) {
+    public SwingTableExample(double oHPressMax, double deadliftMax, double benchMax, double squatMax, JFrame frame) {
         super(new GridLayout(1,0));
  
         this.oHPressMax = oHPressMax;
         this.deadliftMax = deadliftMax;
         this.benchMax = benchMax;
         this.squatMax = squatMax;
+        this.frame = frame;
         
         JTable table = new JTable(new MyTableModel(this.oHPressMax, this.deadliftMax, this.benchMax, this.squatMax));
         table.setPreferredScrollableViewportSize(new Dimension(1500, 70));
@@ -41,11 +43,7 @@ public class SwingTableExample extends JPanel {
         
         
         
-        backButton.addActionListener(new ClickListener(){
-        		public void actionPerformed(ActionEvent arg) {
-        			SwingUtilities.invokeLater(new UserInterface());
-        		}
-        });
+        backButton.addActionListener(new BackListener(this.frame));
         
         //changed layout from boxlayout to border layout to get the effect i wanted
         buttonspot.add(backButton, BorderLayout.SOUTH);

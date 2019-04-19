@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -16,16 +17,19 @@ public class StrengthStandardTable  extends JPanel{
     
     private boolean sex;
     private double userWeight;
+    private JFrame frame; 
 
  
-    public StrengthStandardTable(boolean sex, double userWeight) {
+    public StrengthStandardTable(boolean sex, double userWeight, JFrame frame) {
         super(new GridLayout(1,0));
- 
+        
+        this.setPreferredSize(new Dimension(700,30));
         this.sex = sex;
         this.userWeight = userWeight;
+        this.frame = frame;
         
         JTable table = new JTable(new StrengthTableModel(this.sex, this.userWeight));
-        table.setPreferredScrollableViewportSize(new Dimension(1500, 70));
+        table.setPreferredScrollableViewportSize(new Dimension(700, 30));
         table.setFillsViewportHeight(true);
  
         //Create the scroll pane and add the table to it.
@@ -38,11 +42,8 @@ public class StrengthStandardTable  extends JPanel{
         
         
         
-        backButton.addActionListener(new ClickListener(){
-        		public void actionPerformed(ActionEvent arg) {
-        			SwingUtilities.invokeLater(new UserInterface());
-        		}
-        });
+        backButton.addActionListener(new BackListener(this.frame));
+        
         
         
         buttonspot.add(backButton, BorderLayout.SOUTH);
@@ -53,7 +54,7 @@ public class StrengthStandardTable  extends JPanel{
         //add(scrollPane);
         buttonspot.add(scrollPane, BorderLayout.CENTER);
         add(buttonspot);
- 
+        
     
     }
 }

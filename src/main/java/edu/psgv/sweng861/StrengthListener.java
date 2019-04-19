@@ -1,6 +1,7 @@
 package edu.psgv.sweng861;
 
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,7 +18,7 @@ public class StrengthListener implements ActionListener {
 	private JTextField userWeightField;
 	private JRadioButton sexButton;
 	
-	private JFrame frame;
+	JFrame frame;
 	
 	
 
@@ -53,18 +54,15 @@ public class StrengthListener implements ActionListener {
 		BoxLayout layout = new BoxLayout(container, BoxLayout.Y_AXIS);
 		container.setLayout(layout);
 		
-		 StrengthStandardTable newContentPane = new StrengthStandardTable(this.sex, this.userWeight);
+		 frame.setPreferredSize(new Dimension(700,250));
+		
+		 StrengthStandardTable newContentPane = new StrengthStandardTable(this.sex, this.userWeight, this.frame);
 	     newContentPane.setOpaque(true); //content panes must be opaque
 	     frame.setContentPane(newContentPane);
 	 
 	     //Display the window.
 	     frame.pack();
 	     frame.setVisible(true);
-		
-
-		
-		
-		
 	}
 	
 	

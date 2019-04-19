@@ -9,18 +9,27 @@ import javax.swing.*;
 public class UserInterface implements Runnable {
 
 	private JFrame frame;
-	private WeightCalculator calculator;
-	private double oHPressMax;
-	private double deadliftMax;
-	private double benchMax;
-	private double squatMax;
+
+	public UserInterface(JFrame frame2) {
+		// TODO Auto-generated constructor stub
+		this.frame = frame2;
+	}
+
+
+	public UserInterface() {
+		// TODO Auto-generated constructor stub
+	}
 
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
-		this.frame = new JFrame("5/3/1 Weight Lifting Calculator");
-		this.frame.setPreferredSize(new Dimension(1000,500));
+		if(this.frame != null) {
+			this.frame.setTitle("5/3/1 Weight Lifting Calculator");
+		}else {
+			this.frame = new JFrame("5/3/1 Weight Lifting Calculator");
+		}
+		
+		this.frame.setPreferredSize(new Dimension(280,500));
 		this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		createComponents(this.frame.getContentPane());
 		
@@ -67,18 +76,6 @@ public class UserInterface implements Runnable {
 		
 		container.add(exercisePanel, layout.CENTER);
 		
-				
-		//creating interface for scraping feature
-//		container.add(instructionsLabel);
-//		container.add(overHeadPressLabel);
-//		container.add(overHeadPressField);
-//		container.add(deadliftLabel);
-//		container.add(deadliftField);
-//		container.add(benchLabel);
-//		container.add(benchField);
-//		container.add(squatLabel);
-//		container.add(squatField);
-//		container.add(calculate);
 		
 		JPanel strengthStandardsSection = new JPanel();
 		
@@ -105,14 +102,10 @@ public class UserInterface implements Runnable {
 		 strengthStandardsSection.add(userWeightField);
 		 strengthStandardsSection.add(strengthStandardButton);
 		 
-		
-		// container.add(userWeightLabel);
-		 //container.add(userWeightField);
 		 container.add(strengthStandardsSection, layout.SOUTH);
-		
-		
-		
 		 
+		 
+		 //adding action listeners for the buttons
 		strengthStandardButton.addActionListener(new StrengthListener(maleButton, userWeightField, this.frame)); 
 		
 		calculate.addActionListener(new ClickListener(overHeadPressField, deadliftField, 
